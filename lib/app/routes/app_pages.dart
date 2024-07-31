@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:get/get.dart';
 
 import '../modules/article-detail/bindings/article_detail_binding.dart';
@@ -10,6 +12,8 @@ import '../modules/product-detail/bindings/product_detail_binding.dart';
 import '../modules/product-detail/views/product_detail_view.dart';
 import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 import '../modules/toko/bindings/toko_binding.dart';
 import '../modules/toko/views/toko_view.dart';
 import '../modules/usage-detail/bindings/usage_detail_binding.dart';
@@ -22,7 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -64,6 +68,11 @@ class AppPages {
       name: _Paths.ARTICLE_DETAIL,
       page: () => const ArticleDetailView(),
       binding: ArticleDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }
