@@ -21,10 +21,13 @@ class ArticleDetailView extends GetView<ArticleDetailController> {
       ),
       body: ListView(
         children: [
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 125,
-            color: AppColors.lightGrey,
+            child: Image.asset(
+              "assets/dummy/product1-detail.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(Sizes.m),

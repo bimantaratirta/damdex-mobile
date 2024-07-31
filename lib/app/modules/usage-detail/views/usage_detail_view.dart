@@ -31,10 +31,13 @@ class _UsageDetailViewState extends State<UsageDetailView> with SingleTickerProv
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 125,
-            color: AppColors.lightGrey,
+            child: Image.asset(
+              "assets/dummy/usage1.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
           TabBar(
             controller: tabController,

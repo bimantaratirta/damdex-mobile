@@ -24,4 +24,5 @@ flutter:
   assets:
     - assets/logo/
     - assets/icon/
+    - assets/dummy/
   uses-material-design: true

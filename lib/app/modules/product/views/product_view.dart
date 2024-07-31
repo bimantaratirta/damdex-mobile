@@ -24,11 +24,13 @@ class ProductView extends GetView<ProductController> {
           return CarouselSlider(
             carouselController: controller.carouselController,
             items: (banners).map((banner) {
-              return Container(
+              return SizedBox(
                 height: 150,
                 width: size.width,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                decoration: BoxDecoration(color: banner),
+                child: Image.asset(
+                  banner,
+                  fit: BoxFit.cover,
+                ),
               );
             }).toList(),
             options: CarouselOptions(
@@ -57,7 +59,7 @@ class ProductView extends GetView<ProductController> {
             padding: const EdgeInsets.symmetric(vertical: Sizes.r, horizontal: Sizes.m),
             child: Row(
               children: [
-                for (Color banner in banners) ...[
+                for (String banner in banners) ...[
                   InkWell(
                     onTap: () => controller.setCurrentBanner(banner),
                     child: Container(
@@ -108,7 +110,7 @@ class ProductView extends GetView<ProductController> {
             fontSize: 16,
           ),
         ),
-        for (var i in [1, 2]) ...[
+        for (var i in [1, 2, 3, 4]) ...[
           ArticleCard(i: i),
         ],
         Gaps.vertical.m,

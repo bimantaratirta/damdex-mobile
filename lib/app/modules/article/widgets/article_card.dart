@@ -40,10 +40,14 @@ class ArticleCard extends StatelessWidget {
               width: 160,
               height: 90,
               decoration: const BoxDecoration(
-                color: AppColors.lightGrey,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(2),
+                  Radius.circular(4),
                 ),
+              ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Image.asset(
+                "assets/dummy/product1-detail.jpg",
+                fit: BoxFit.cover,
               ),
             ),
             Gaps.horizontal.r,

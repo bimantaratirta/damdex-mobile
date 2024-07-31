@@ -42,10 +42,14 @@ class UsageCard extends StatelessWidget {
               height: 100,
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: AppColors.lightGrey,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(2),
+                  Radius.circular(4),
                 ),
+              ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Image.asset(
+                "assets/dummy/usage1.jpg",
+                fit: BoxFit.cover,
               ),
             ),
             Gaps.vertical.s,

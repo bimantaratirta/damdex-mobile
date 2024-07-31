@@ -31,10 +31,13 @@ class _ProductDetailViewState extends State<ProductDetailView> with SingleTicker
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 125,
-            color: AppColors.lightGrey,
+            child: Image.asset(
+              "assets/dummy/product1.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
           TabBar(
             controller: tabController,
