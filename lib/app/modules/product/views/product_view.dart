@@ -7,11 +7,14 @@ import '../../../constants/sizes.dart';
 import '../../../data/api/api_path.dart';
 import '../../../data/api/product/model/model_get_products.dart';
 import '../../../data/api/settings/model/model_settings.dart';
+import '../../../data/api/usage/model/model_get_usages.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../../../theme/app_colors.dart';
 import '../../article/widgets/article_card.dart';
+import '../../home/controllers/home_controller.dart';
+import '../../usages/controllers/usages_controller.dart';
 import '../../usages/widgets/usage_card.dart';
 import '../controllers/product_controller.dart';
 import '../widgets/product_card.dart';
@@ -22,13 +25,18 @@ class ProductView extends GetView<ProductController> {
   Widget build(BuildContext context) {
     final size = Get.size;
     return RefreshIndicator(
-      onRefresh: controller.onInit,
+      onRefresh: () async {
+        await controller.onInit();
+        await Get.find<UsagesController>().onInit();
+      },
       child: Obx(() {
         final banners = controller.banners;
         final currentBanner = controller.currentBanner.value;
         final isLoading = controller.isLoading.value;
         final isError = controller.isError.value;
         final products = controller.products.value;
+        final usages = (Get.find<UsagesController>().usages.value?.payload ?? []).take(2).toList();
+        final homeController = Get.find<HomeController>();
         if (isLoading) {
           return Center(
             child: Column(
@@ -115,16 +123,28 @@ class ProductView extends GetView<ProductController> {
               ProductCard(product: product),
             ],
             Gaps.vertical.s,
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
-              child: TextBold(
-                text: "Cara Pakai",
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
+            InkWell(
+              onTap: () => homeController.persistentTabController.jumpToTab(1),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextBold(
+                      text: "Cara Pakai",
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 16,
+                    ),
+                  ],
+                ),
               ),
             ),
-            for (var i in [1, 2]) ...[
-              UsageCard(i: i),
+            for (Usage usage in usages) ...[
+              UsageCard(usage: usage),
             ],
             Gaps.vertical.s,
             const Padding(

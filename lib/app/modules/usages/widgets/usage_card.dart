@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 import '../../../constants/sizes.dart';
+import '../../../data/api/api_path.dart';
+import '../../../data/api/usage/model/model_get_usages.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/text_bold.dart';
@@ -10,15 +12,15 @@ import '../../../theme/app_colors.dart';
 class UsageCard extends StatelessWidget {
   const UsageCard({
     super.key,
-    required this.i,
+    required this.usage,
   });
 
-  final int i;
+  final Usage usage;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.USAGE_DETAIL),
+      onTap: () => Get.toNamed(Routes.USAGE_DETAIL, arguments: usage.id),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: Sizes.s, horizontal: Sizes.m),
         padding: const EdgeInsets.symmetric(
@@ -47,8 +49,8 @@ class UsageCard extends StatelessWidget {
                 ),
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.asset(
-                "assets/dummy/usage1.jpg",
+              child: Image.network(
+                APIPath.assetId(usage.idAsset ?? ""),
                 fit: BoxFit.cover,
               ),
             ),
@@ -57,7 +59,7 @@ class UsageCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextBold(
-                  text: "Cara Pakai $i",
+                  text: usage.judul ?? "-",
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
