@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 
 import '../../../constants/sizes.dart';
 import '../../../data/api/api_path.dart';
+import '../../../data/api/product/model/model_get_products.dart';
 import '../../../data/api/settings/model/model_settings.dart';
+import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../../../theme/app_colors.dart';
@@ -24,6 +26,27 @@ class ProductView extends GetView<ProductController> {
       child: Obx(() {
         final banners = controller.banners;
         final currentBanner = controller.currentBanner.value;
+        final isLoading = controller.isLoading.value;
+        final isError = controller.isError.value;
+        final products = controller.products.value;
+        if (isLoading) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CircularProgressIndicator(),
+                Gaps.vertical.m,
+                if (isError)
+                  AppButton(
+                    type: ButtonType.elevated,
+                    onPressed: controller.onInit,
+                    child: const Text("Refresh"),
+                  ),
+              ],
+            ),
+          );
+        }
         return ListView(
           children: [
             if (banners.isNotEmpty)
@@ -88,8 +111,8 @@ class ProductView extends GetView<ProductController> {
                 fontSize: 16,
               ),
             ),
-            for (var i in [1, 2]) ...[
-              ProductCard(i: i),
+            for (Produk product in products?.payload ?? []) ...[
+              ProductCard(product: product),
             ],
             Gaps.vertical.s,
             const Padding(
