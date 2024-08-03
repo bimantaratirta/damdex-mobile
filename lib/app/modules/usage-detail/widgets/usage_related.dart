@@ -10,7 +10,7 @@ class UsageRelated extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: Sizes.m),
-      children: [1, 2, 3, 4, 5].map((i) => ArticleCard(i: i)).toList(),
+      // children: [1, 2, 3, 4, 5].map((i) => ArticleCard(i: i)).toList(),
     );
   }
 }

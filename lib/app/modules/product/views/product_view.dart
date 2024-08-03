@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../constants/sizes.dart';
 import '../../../data/api/api_path.dart';
+import '../../../data/api/article/model/model_articles.dart';
 import '../../../data/api/product/model/model_get_products.dart';
 import '../../../data/api/settings/model/model_settings.dart';
 import '../../../data/api/usage/model/model_get_usages.dart';
@@ -12,6 +13,7 @@ import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../../../theme/app_colors.dart';
+import '../../article/controllers/article_controller.dart';
 import '../../article/widgets/article_card.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../usages/controllers/usages_controller.dart';
@@ -28,6 +30,7 @@ class ProductView extends GetView<ProductController> {
       onRefresh: () async {
         await controller.onInit();
         await Get.find<UsagesController>().onInit();
+        await Get.find<ArticleController>().onInit();
       },
       child: Obx(() {
         final banners = controller.banners;
@@ -36,6 +39,7 @@ class ProductView extends GetView<ProductController> {
         final isError = controller.isError.value;
         final products = controller.products.value;
         final usages = (Get.find<UsagesController>().usages.value?.payload ?? []).take(2).toList();
+        final articles = (Get.find<ArticleController>().articles.value?.payload ?? []).take(4).toList();
         final homeController = Get.find<HomeController>();
         if (isLoading) {
           return Center(
@@ -155,8 +159,8 @@ class ProductView extends GetView<ProductController> {
                 fontSize: 16,
               ),
             ),
-            for (var i in [1, 2, 3, 4]) ...[
-              ArticleCard(i: i),
+            for (Artikel article in articles) ...[
+              ArticleCard(article: article),
             ],
             Gaps.vertical.m,
           ],

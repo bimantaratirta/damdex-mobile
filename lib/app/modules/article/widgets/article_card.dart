@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 import '../../../constants/sizes.dart';
+import '../../../data/api/api_path.dart';
+import '../../../data/api/article/model/model_articles.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../../../theme/app_colors.dart';
+import '../../../utils/iso_parser.dart';
 
 class ArticleCard extends StatelessWidget {
-  const ArticleCard({super.key, required this.i});
+  const ArticleCard({
+    super.key,
+    required this.article,
+  });
 
-  final int i;
+  final Artikel article;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +51,8 @@ class ArticleCard extends StatelessWidget {
                 ),
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.asset(
-                "assets/dummy/product1-detail.jpg",
+              child: Image.network(
+                APIPath.assetId(article.idAsset ?? ""),
                 fit: BoxFit.cover,
               ),
             ),
@@ -57,15 +63,15 @@ class ArticleCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextBold(
-                    text: "Judul Artikel Yang Nomor $i",
+                    text: article.judul ?? "-",
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const Text(
-                    "1 Januari 2024",
-                    style: TextStyle(
+                  Text(
+                    isoParser(article.updatedAt?.toIso8601String()),
+                    style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w300,
                     ),
