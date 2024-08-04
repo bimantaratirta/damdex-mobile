@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
 
+import '../../../data/api/logs/data/post_user_log.dart';
 import '../../../data/api/toko/data/get_toko_kota.dart';
 import '../../../data/api/toko/data/get_toko_wilayah.dart';
 import '../../../data/api/toko/model/model_toko_kota.dart';
 import '../../../data/api/toko/model/model_toko_wilayah.dart';
+import '../../../utils/get_device_info.dart';
+import '../../../utils/location_service.dart';
 
 class TokoController extends GetxController {
   Rx<ModelTokoWilayah?> wilayahProvinsi = Rx<ModelTokoWilayah?>(null);
@@ -14,6 +17,8 @@ class TokoController extends GetxController {
   Rx<String?> selectedKota = Rx<String?>(null);
   RxBool isLoading = true.obs;
   RxBool isError = true.obs;
+  Map<String, dynamic> location = {};
+  String deviceName = "";
 
   @override
   Future<void> onInit() async {
@@ -46,12 +51,22 @@ class TokoController extends GetxController {
     });
   }
 
-  void onKotaChanged(String? text) {
+  void onKotaChanged(String? text) async {
     selectedKota.value = text;
     final id = wilayahKota.value?.payload?.firstWhereOrNull((wilayah) {
       return (wilayah.nama ?? "").isCaseInsensitiveContainsAny(text ?? "") &&
           (wilayah.tipe ?? "").isCaseInsensitiveContainsAny(text ?? "");
     })?.id;
+
+    location = await LocationService.getCurrentLocation();
+    deviceName = (await getDeviceInfo())["name"];
+    await postUserLog({
+      "device": deviceName,
+      "lokasi": location,
+      "tipeKonten": "artikel",
+      "idKonten": id,
+    });
+
     getTokoKota(id.toString()).then((res) {
       if (res.data != null) {
         tokoKota.value = res.data;

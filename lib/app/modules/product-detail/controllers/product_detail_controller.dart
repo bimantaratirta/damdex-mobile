@@ -28,16 +28,16 @@ class ProductDetailController extends GetxController {
     isLoading.value = true;
 
     final response = await getProduct(Get.arguments ?? "null");
-    location = await LocationService.getCurrentLocation();
-    deviceName = (await getDeviceInfo())["name"];
-    await postUserLog({
-      "device": deviceName,
-      "lokasi": location,
-      "tipeKonten": "produk",
-      "idKonten": produk.value?.id,
-    });
     if (response.data != null) {
       produk.value = response.data;
+      location = await LocationService.getCurrentLocation();
+      deviceName = (await getDeviceInfo())["name"];
+      await postUserLog({
+        "device": deviceName,
+        "lokasi": location,
+        "tipeKonten": "produk",
+        "idKonten": produk.value?.id,
+      });
     } else {
       Get.back();
     }
