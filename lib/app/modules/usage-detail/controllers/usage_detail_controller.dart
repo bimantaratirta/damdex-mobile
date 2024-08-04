@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../../../data/api/logs/data/post_user_log.dart';
 import '../../../data/api/usage/data/get_usage.dart';
 import '../../../data/api/usage/model/model_usage.dart';
-import '../../../routes/app_pages.dart';
 import '../../../utils/get_device_info.dart';
 import '../../../utils/location_service.dart';
 
@@ -29,11 +28,7 @@ class UsageDetailController extends GetxController {
     isLoading.value = true;
 
     final response = await getUsage(Get.arguments ?? "null");
-    if (response.data != null) {
-      usage.value = response.data;
-    } else {
-      Get.offNamed(Routes.HOME);
-    }
+
     location = await LocationService.getCurrentLocation();
     deviceName = (await getDeviceInfo())["name"];
     await postUserLog({
@@ -42,6 +37,12 @@ class UsageDetailController extends GetxController {
       "tipeKonten": "penggunaan",
       "idKonten": usage.value?.id,
     });
+
+    if (response.data != null) {
+      usage.value = response.data;
+    } else {
+      Get.back();
+    }
     isLoading.value = false;
     super.onInit();
   }

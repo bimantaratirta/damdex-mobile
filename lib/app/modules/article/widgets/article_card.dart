@@ -22,7 +22,7 @@ class ArticleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.ARTICLE_DETAIL),
+      onTap: () => Get.toNamed(Routes.ARTICLE_DETAIL, arguments: article.id),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: Sizes.s, horizontal: Sizes.m),
         padding: const EdgeInsets.symmetric(
@@ -83,7 +83,7 @@ class ArticleCard extends StatelessWidget {
                     borderRadius: const BorderRadius.all(
                       Radius.circular(Sizes.xs),
                     ),
-                    onPressed: () => Get.toNamed(Routes.ARTICLE_DETAIL),
+                    onPressed: () => Get.toNamed(Routes.ARTICLE_DETAIL, arguments: article.id),
                     child: const Text(
                       "Selengkapnya",
                       style: TextStyle(fontSize: 11),

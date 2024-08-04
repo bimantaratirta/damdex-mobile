@@ -1,23 +1,38 @@
 import 'package:get/get.dart';
 
-class ArticleDetailController extends GetxController {
-  //TODO: Implement ArticleDetailController
+import '../../../data/api/article/data/get_article.dart';
+import '../../../data/api/article/model/model_article.dart';
+import '../../../data/api/logs/data/post_user_log.dart';
+import '../../../utils/get_device_info.dart';
+import '../../../utils/location_service.dart';
 
-  final count = 0.obs;
+class ArticleDetailController extends GetxController {
+  final Rx<ModelArticle?> article = Rx<ModelArticle?>(null);
+  Map<String, dynamic> location = {};
+  String deviceName = "";
+
+  RxBool isLoading = false.obs;
+  RxBool isError = false.obs;
+
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    isLoading.value = true;
+
+    final response = await getArticle(Get.arguments ?? "null");
+    if (response.data != null) {
+      article.value = response.data;
+    } else {
+      Get.back();
+    }
+    location = await LocationService.getCurrentLocation();
+    deviceName = (await getDeviceInfo())["name"];
+    await postUserLog({
+      "device": deviceName,
+      "lokasi": location,
+      "tipeKonten": "artikel",
+      "idKonten": article.value?.id,
+    });
+    isLoading.value = false;
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

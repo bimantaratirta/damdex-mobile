@@ -6,8 +6,8 @@ class ModelArticle {
   String? judul;
   String? body;
   bool? isAktif;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   ModelArticle({
     this.id,
@@ -25,8 +25,8 @@ class ModelArticle {
     String? judul,
     String? body,
     bool? isAktif,
-    String? createdAt,
-    String? updatedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) =>
       ModelArticle(
         id: id ?? this.id,
@@ -48,8 +48,8 @@ class ModelArticle {
         judul: json["judul"],
         body: json["body"],
         isAktif: json["isAktif"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -58,7 +58,7 @@ class ModelArticle {
         "judul": judul,
         "body": body,
         "isAktif": isAktif,
-        "createdAt": createdAt,
-        "updatedAt": updatedAt,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
       };
 }
