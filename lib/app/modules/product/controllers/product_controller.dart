@@ -29,7 +29,11 @@ class ProductController extends GetxController {
     if (responseSettings.data != null) {
       settings.value = responseSettings.data;
       banners.value = responseSettings.data?.payload ?? [];
-      currentBanner.value = responseSettings.data?.payload?[0];
+      if (responseSettings.data?.payload != null) {
+        if ((responseSettings.data?.payload?.length ?? 0) > 0) {
+          currentBanner.value = responseSettings.data?.payload?.first;
+        }
+      }
     } else {
       isError.value = true;
     }
