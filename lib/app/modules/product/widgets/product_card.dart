@@ -44,14 +44,12 @@ class ProductCard extends StatelessWidget {
               height: 100,
               width: double.infinity,
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(4),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(4)),
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.network(
                 APIPath.assetId(product.idAsset ?? ""),
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             Gaps.vertical.s,

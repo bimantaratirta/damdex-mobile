@@ -8,9 +8,9 @@ import '../modules/usages/controllers/usages_controller.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ProductController>(() => ProductController());
-    Get.lazyPut<UsagesController>(() => UsagesController());
-    Get.lazyPut<ArticleController>(() => ArticleController());
-    Get.lazyPut<TokoController>(() => TokoController());
+    Get.put<ProductController>(ProductController());
+    Get.put<UsagesController>(UsagesController());
+    Get.put<ArticleController>(ArticleController());
+    Get.put<TokoController>(TokoController());
   }
 }

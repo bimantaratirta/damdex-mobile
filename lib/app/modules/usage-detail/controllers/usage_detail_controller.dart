@@ -1,15 +1,48 @@
 import 'package:get/get.dart';
 
+import '../../../data/api/logs/data/post_user_log.dart';
+import '../../../data/api/usage/data/get_usage.dart';
+import '../../../data/api/usage/model/model_usage.dart';
+import '../../../routes/app_pages.dart';
+import '../../../utils/get_device_info.dart';
+import '../../../utils/location_service.dart';
+
 class UsageDetailController extends GetxController {
-  List<int> types = [0, 1, 2];
+  final Rx<ModelUsage?> usage = Rx<ModelUsage?>(null);
+  Map<String, dynamic> location = {};
+  String deviceName = "";
 
-  RxInt selectedType = 0.obs;
+  Rx<Tipe?> selectedType = Rx<Tipe?>(null);
+  RxBool isLoading = false.obs;
+  RxBool isError = false.obs;
 
-  void setSelectedType(int val) {
-    if (selectedType.value == val) {
-      selectedType.value = 99;
+  void setSelectedType(Tipe tipe) {
+    if (selectedType.value == tipe) {
+      selectedType.value = null;
     } else {
-      selectedType.value = val;
+      selectedType.value = tipe;
     }
+  }
+
+  @override
+  Future<void> onInit() async {
+    isLoading.value = true;
+
+    final response = await getUsage(Get.arguments ?? "null");
+    if (response.data != null) {
+      usage.value = response.data;
+    } else {
+      Get.offNamed(Routes.HOME);
+    }
+    location = await LocationService.getCurrentLocation();
+    deviceName = (await getDeviceInfo())["name"];
+    await postUserLog({
+      "device": deviceName,
+      "lokasi": location,
+      "tipeKonten": "penggunaan",
+      "idKonten": usage.value?.id,
+    });
+    isLoading.value = false;
+    super.onInit();
   }
 }
