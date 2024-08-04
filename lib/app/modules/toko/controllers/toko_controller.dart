@@ -59,7 +59,7 @@ class TokoController extends GetxController {
     })?.id;
 
     location = await LocationService.getCurrentLocation();
-    deviceName = (await getDeviceInfo())["name"];
+    deviceName = await getDeviceInfo();
     await postUserLog({
       "device": deviceName,
       "lokasi": location,

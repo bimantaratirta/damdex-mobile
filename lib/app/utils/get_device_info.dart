@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:device_info_plus/device_info_plus.dart';
 
-Future<Map<String, dynamic>> getDeviceInfo() async {
+Future<String> getDeviceInfo() async {
   Map<String, dynamic> deviceInfo = (await DeviceInfoPlugin().deviceInfo).data;
-  return deviceInfo;
+  log(deviceInfo.toString());
+  final result = deviceInfo["name"] ?? deviceInfo["device"] ?? "Unknown";
+  return result;
 }

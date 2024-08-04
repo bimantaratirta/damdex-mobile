@@ -31,7 +31,7 @@ class ProductDetailController extends GetxController {
     if (response.data != null) {
       produk.value = response.data;
       location = await LocationService.getCurrentLocation();
-      deviceName = (await getDeviceInfo())["name"];
+      deviceName = await getDeviceInfo();
       await postUserLog({
         "device": deviceName,
         "lokasi": location,
