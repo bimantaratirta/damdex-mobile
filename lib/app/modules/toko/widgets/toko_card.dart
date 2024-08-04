@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/sizes.dart';
+import '../../../data/api/toko/model/model_toko_kota.dart';
 import '../../../shareds/widgets/text_bold.dart';
 
 class TokoCard extends StatelessWidget {
-  const TokoCard({super.key});
+  const TokoCard({super.key, required this.toko});
+
+  final Toko toko;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextBold(
-          text: "Nama Toko",
+          text: toko.nama ?? "",
           fontWeight: FontWeight.w500,
           fontSize: Sizes.r,
         ),
-        Text("Tri Hartanto (Area Sales Manager DAMDEX) Hp : 0878 3944 4323")
+        Text("${toko.detail} Hp : ${toko.noHp}")
       ],
     );
   }
