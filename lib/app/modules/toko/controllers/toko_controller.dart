@@ -28,6 +28,7 @@ class TokoController extends GetxController {
       if (res.data != null) {
         wilayahProvinsi.value = res.data;
         onProvinsiChanged(res.data?.payload?[0].nama ?? "");
+        onKotaChanged("${res.data?.payload?[0].tipe ?? ""} ${res.data?.payload?[0].nama ?? ""}");
       } else {
         isError.value = true;
       }

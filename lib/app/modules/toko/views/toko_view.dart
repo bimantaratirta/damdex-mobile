@@ -97,6 +97,7 @@ class TokoView extends GetView<TokoController> {
                     TokoCard(toko: retailer),
                     Gaps.vertical.sr,
                   ],
+                  Gaps.vertical.xh,
                 ],
               ),
             ),
