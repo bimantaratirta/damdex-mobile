@@ -63,7 +63,7 @@ class TokoController extends GetxController {
     await postUserLog({
       "device": deviceName,
       "lokasi": location,
-      "tipeKonten": "artikel",
+      "tipeKonten": "toko",
       "idKonten": id,
     });
 
