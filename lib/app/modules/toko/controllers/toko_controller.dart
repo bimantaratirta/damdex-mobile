@@ -27,8 +27,8 @@ class TokoController extends GetxController {
     await getTokoWilayah({"tipe": "provinsi"}).then((res) {
       if (res.data != null) {
         wilayahProvinsi.value = res.data;
-        onProvinsiChanged(res.data?.payload?[0].nama ?? "");
-        onKotaChanged("${res.data?.payload?[0].tipe ?? ""} ${res.data?.payload?[0].nama ?? ""}");
+        // onProvinsiChanged(res.data?.payload?[0].nama ?? "");
+        // onKotaChanged("${res.data?.payload?[0].tipe ?? ""} ${res.data?.payload?[0].nama ?? ""}");
       } else {
         isError.value = true;
       }
@@ -39,13 +39,15 @@ class TokoController extends GetxController {
 
   void onProvinsiChanged(String? text) {
     selectedProvinsi.value = text;
+    selectedKota.value = null;
+    wilayahKota.value = null;
+    tokoKota.value = null;
     final idProvinsi = wilayahProvinsi.value?.payload?.firstWhereOrNull((provinsi) {
       return (provinsi.nama ?? "").contains(text ?? "");
     })?.id;
     getTokoWilayah({"tipe": "kota", "idProvinsi": idProvinsi}).then((res) {
       if (res.data != null) {
         wilayahKota.value = res.data;
-        selectedKota.value = "${res.data?.payload?[0].tipe ?? ""} ${res.data?.payload?[0].nama ?? ""}";
       } else {
         isError.value = true;
       }

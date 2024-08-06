@@ -21,6 +21,10 @@ class TokoView extends GetView<TokoController> {
       final tokoKota = controller.tokoKota.value;
       final isError = controller.isError.value;
       final isLoading = controller.isLoading.value;
+      final distributors = tokoKota?.listToko?.where((toko) => toko.tipe == "distributor").toList();
+      final retailers = tokoKota?.listToko?.where((toko) => toko.tipe == "retailer").toList();
+      final selectedProvinsi = controller.selectedProvinsi.value;
+      final selectedKota = controller.selectedKota.value;
       if (isLoading) {
         return Center(
           child: Column(
@@ -46,13 +50,15 @@ class TokoView extends GetView<TokoController> {
             child: Column(
               children: [
                 AppDropdownTextField(
+                  hintText: selectedProvinsi == null ? "Provinsi" : null,
                   label: "Provinsi",
                   values: (wilayahProvinsi?.payload ?? []).map((tokoProvinsi) => tokoProvinsi.nama).toList(),
                   onChanged: (text) => controller.onProvinsiChanged(text),
-                  selectedValue: controller.selectedProvinsi.value,
+                  selectedValue: selectedProvinsi,
                 ),
                 Gaps.vertical.r,
                 AppDropdownTextField(
+                  hintText: selectedKota == null ? "Kota" : null,
                   label: "Kota",
                   values: (wilayahKota?.payload ?? [])
                       .map(
@@ -60,7 +66,7 @@ class TokoView extends GetView<TokoController> {
                       )
                       .toList(),
                   onChanged: controller.onKotaChanged,
-                  selectedValue: controller.selectedKota.value,
+                  selectedValue: selectedKota,
                 ),
                 Gaps.vertical.r,
                 const Divider(
@@ -75,27 +81,33 @@ class TokoView extends GetView<TokoController> {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: Sizes.m),
                 children: [
-                  const TextBold(
-                    text: "Distributor",
-                    fontWeight: FontWeight.w500,
-                    fontSize: Sizes.m,
-                  ),
-                  Gaps.vertical.r,
-                  for (Toko distributor
-                      in tokoKota?.listToko?.where((toko) => toko.tipe == "distributor").toList() ?? []) ...[
-                    TokoCard(toko: distributor),
-                    Gaps.vertical.sr,
+                  if (distributors?.isNotEmpty ?? false) ...[
+                    const TextBold(
+                      text: "Distributor",
+                      fontWeight: FontWeight.w500,
+                      fontSize: Sizes.m,
+                    ),
+                    Gaps.vertical.r,
+                    for (Toko distributor in distributors ?? []) ...[
+                      TokoCard(toko: distributor),
+                      Gaps.vertical.sr,
+                    ],
+                    Gaps.vertical.l,
                   ],
-                  Gaps.vertical.l,
-                  const TextBold(
-                    text: "Retailer",
-                    fontWeight: FontWeight.w500,
-                    fontSize: Sizes.m,
-                  ),
-                  Gaps.vertical.r,
-                  for (Toko retailer in tokoKota?.listToko?.where((toko) => toko.tipe == "retailer").toList() ?? []) ...[
-                    TokoCard(toko: retailer),
-                    Gaps.vertical.sr,
+                  if (retailers?.isNotEmpty ?? false) ...[
+                    const TextBold(
+                      text: "Retailer",
+                      fontWeight: FontWeight.w500,
+                      fontSize: Sizes.m,
+                    ),
+                    Gaps.vertical.r,
+                    for (Toko retailer in retailers ?? []) ...[
+                      TokoCard(toko: retailer),
+                      Gaps.vertical.sr,
+                    ],
+                  ],
+                  if ((distributors ?? []).isEmpty && (retailers ?? []).isEmpty) ...[
+                    const Text("Silahkan pilih lokasi toko"),
                   ],
                   Gaps.vertical.xh,
                 ],
