@@ -16,7 +16,7 @@ class TokoController extends GetxController {
   Rx<String?> selectedProvinsi = Rx<String?>(null);
   Rx<String?> selectedKota = Rx<String?>(null);
   RxBool isLoading = true.obs;
-  RxBool isFieldLoading = true.obs;
+  RxBool isFieldLoading = false.obs;
   RxBool isError = true.obs;
   Map<String, dynamic> location = {};
   String deviceName = "";
