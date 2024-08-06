@@ -63,13 +63,15 @@ class TokoController extends GetxController {
           (wilayah.tipe ?? "").isCaseInsensitiveContainsAny(text ?? "");
     })?.id;
 
-    location = await LocationService.getCurrentLocation();
-    deviceName = await getDeviceInfo();
-    await postUserLog({
-      "device": deviceName,
-      "lokasi": location,
-      "tipeKonten": "toko",
-      "idKonten": id,
+    LocationService.getCurrentLocation().then((location) {
+      getDeviceInfo().then((deviceName) {
+        postUserLog({
+          "device": deviceName,
+          "lokasi": location,
+          "tipeKonten": "toko",
+          "idKonten": id,
+        });
+      });
     });
 
     getTokoKota(id.toString()).then((res) {
