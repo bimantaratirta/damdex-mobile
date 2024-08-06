@@ -31,14 +31,15 @@ class UsageDetailController extends GetxController {
 
     if (response.data != null) {
       usage.value = response.data;
-
-      location = await LocationService.getCurrentLocation();
-      deviceName = await getDeviceInfo();
-      await postUserLog({
-        "device": deviceName,
-        "lokasi": location,
-        "tipeKonten": "penggunaan",
-        "idKonten": usage.value?.id,
+      LocationService.getCurrentLocation().then((location) {
+        getDeviceInfo().then((deviceName) {
+          postUserLog({
+            "device": deviceName,
+            "lokasi": location,
+            "tipeKonten": "penggunaan",
+            "idKonten": usage.value?.id,
+          });
+        });
       });
     } else {
       Get.back();

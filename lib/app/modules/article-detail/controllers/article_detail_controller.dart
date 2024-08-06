@@ -21,13 +21,15 @@ class ArticleDetailController extends GetxController {
     final response = await getArticle(Get.arguments ?? "null");
     if (response.data != null) {
       article.value = response.data;
-      location = await LocationService.getCurrentLocation();
-      deviceName = await getDeviceInfo();
-      await postUserLog({
-        "device": deviceName,
-        "lokasi": location,
-        "tipeKonten": "artikel",
-        "idKonten": article.value?.id,
+      LocationService.getCurrentLocation().then((location) {
+        getDeviceInfo().then((deviceName) {
+          postUserLog({
+            "device": deviceName,
+            "lokasi": location,
+            "tipeKonten": "artikel",
+            "idKonten": article.value?.id,
+          });
+        });
       });
     } else {
       Get.back();
