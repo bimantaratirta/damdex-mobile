@@ -38,12 +38,14 @@ class Payload {
   int? idProvinsi;
   String? tipe;
   String? nama;
+  int? totalToko;
 
   Payload({
     this.id,
     this.idProvinsi,
     this.tipe,
     this.nama,
+    this.totalToko,
   });
 
   Payload copyWith({
@@ -51,12 +53,14 @@ class Payload {
     int? idProvinsi,
     String? tipe,
     String? nama,
+    int? totalToko,
   }) =>
       Payload(
         id: id ?? this.id,
         idProvinsi: idProvinsi ?? this.idProvinsi,
         tipe: tipe ?? this.tipe,
         nama: nama ?? this.nama,
+        totalToko: totalToko ?? this.totalToko,
       );
 
   factory Payload.fromRawJson(String str) => Payload.fromJson(json.decode(str));
@@ -68,6 +72,7 @@ class Payload {
         idProvinsi: json["idProvinsi"],
         tipe: json["tipe"],
         nama: json["nama"],
+        totalToko: json["totalToko"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -75,5 +80,6 @@ class Payload {
         "idProvinsi": idProvinsi,
         "tipe": tipe,
         "nama": nama,
+        "totalToko": totalToko,
       };
 }

@@ -62,6 +62,7 @@ class TokoView extends GetView<TokoController> {
                   hintText: selectedKota == null ? "Kota" : null,
                   label: "Kota",
                   values: (wilayahKota?.payload ?? [])
+                      .where((wilayah) => (wilayah.totalToko ?? 0) > 0)
                       .map(
                         (wilayah) => "${wilayah.tipe ?? ""} ${wilayah.nama ?? ""}",
                       )
