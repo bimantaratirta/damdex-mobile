@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,8 +48,8 @@ class ProductCard extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(4)),
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.network(
-                APIPath.assetId(product.idAsset ?? ""),
+              child: CachedNetworkImage(
+                imageUrl: APIPath.assetId(product.idAsset ?? ""),
                 fit: BoxFit.contain,
               ),
             ),

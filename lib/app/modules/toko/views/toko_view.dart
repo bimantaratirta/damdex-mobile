@@ -21,6 +21,7 @@ class TokoView extends GetView<TokoController> {
       final tokoKota = controller.tokoKota.value;
       final isError = controller.isError.value;
       final isLoading = controller.isLoading.value;
+      final isFieldLoading = controller.isFieldLoading.value;
       final distributors = tokoKota?.listToko?.where((toko) => toko.tipe == "distributor").toList();
       final retailers = tokoKota?.listToko?.where((toko) => toko.tipe == "retailer").toList();
       final selectedProvinsi = controller.selectedProvinsi.value;
@@ -81,34 +82,42 @@ class TokoView extends GetView<TokoController> {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: Sizes.m),
                 children: [
-                  if (distributors?.isNotEmpty ?? false) ...[
-                    const TextBold(
-                      text: "Distributor",
-                      fontWeight: FontWeight.w500,
-                      fontSize: Sizes.m,
+                  if (isFieldLoading) ...[
+                    const Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    Gaps.vertical.r,
-                    for (Toko distributor in distributors ?? []) ...[
-                      TokoCard(toko: distributor),
-                      Gaps.vertical.sr,
+                  ] else ...[
+                    if ((distributors ?? []).isEmpty && (retailers ?? []).isEmpty) ...[
+                      const Text("Data Kosong"),
                     ],
-                    Gaps.vertical.l,
-                  ],
-                  if (retailers?.isNotEmpty ?? false) ...[
-                    const TextBold(
-                      text: "Retailer",
-                      fontWeight: FontWeight.w500,
-                      fontSize: Sizes.m,
-                    ),
-                    Gaps.vertical.r,
-                    for (Toko retailer in retailers ?? []) ...[
-                      TokoCard(toko: retailer),
-                      Gaps.vertical.sr,
+                    if (distributors?.isNotEmpty ?? false) ...[
+                      const TextBold(
+                        text: "Distributor",
+                        fontWeight: FontWeight.w500,
+                        fontSize: Sizes.m,
+                      ),
+                      Gaps.vertical.r,
+                      for (Toko distributor in distributors ?? []) ...[
+                        TokoCard(toko: distributor),
+                        Gaps.vertical.sr,
+                      ],
+                      Gaps.vertical.l,
+                    ],
+                    if (retailers?.isNotEmpty ?? false) ...[
+                      const TextBold(
+                        text: "Retailer",
+                        fontWeight: FontWeight.w500,
+                        fontSize: Sizes.m,
+                      ),
+                      Gaps.vertical.r,
+                      for (Toko retailer in retailers ?? []) ...[
+                        TokoCard(toko: retailer),
+                        Gaps.vertical.sr,
+                      ],
                     ],
                   ],
-                  if ((distributors ?? []).isEmpty && (retailers ?? []).isEmpty) ...[
-                    const Text("Silahkan pilih lokasi toko"),
-                  ],
+                  Gaps.vertical.xh,
+                  Gaps.vertical.xh,
                   Gaps.vertical.xh,
                 ],
               ),

@@ -16,6 +16,7 @@ class TokoController extends GetxController {
   Rx<String?> selectedProvinsi = Rx<String?>(null);
   Rx<String?> selectedKota = Rx<String?>(null);
   RxBool isLoading = true.obs;
+  RxBool isFieldLoading = true.obs;
   RxBool isError = true.obs;
   Map<String, dynamic> location = {};
   String deviceName = "";
@@ -55,6 +56,7 @@ class TokoController extends GetxController {
   }
 
   void onKotaChanged(String? text) async {
+    isFieldLoading.value = true;
     selectedKota.value = text;
     final id = wilayahKota.value?.payload?.firstWhereOrNull((wilayah) {
       return (wilayah.nama ?? "").isCaseInsensitiveContainsAny(text ?? "") &&
@@ -78,5 +80,6 @@ class TokoController extends GetxController {
         isError.value = true;
       }
     });
+    isFieldLoading.value = false;
   }
 }

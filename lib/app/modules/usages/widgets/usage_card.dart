@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -49,8 +50,8 @@ class UsageCard extends StatelessWidget {
                 ),
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.network(
-                APIPath.assetId(usage.idAsset ?? ""),
+              child: CachedNetworkImage(
+                imageUrl: APIPath.assetId(usage.idAsset ?? ""),
                 fit: BoxFit.cover,
               ),
             ),

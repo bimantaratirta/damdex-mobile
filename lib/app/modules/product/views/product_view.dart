@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -68,8 +69,8 @@ class ProductView extends GetView<ProductController> {
                   return SizedBox(
                     height: 150,
                     width: size.width,
-                    child: Image.network(
-                      APIPath.assetId(banner.value ?? ""),
+                    child: CachedNetworkImage(
+                      imageUrl: APIPath.assetId(banner.value ?? ""),
                       fit: BoxFit.cover,
                     ),
                   );
