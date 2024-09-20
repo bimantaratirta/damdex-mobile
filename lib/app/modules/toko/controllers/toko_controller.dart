@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 
-import '../../../data/api/logs/data/post_user_log.dart';
 import '../../../data/api/toko/data/get_toko_kota.dart';
 import '../../../data/api/toko/data/get_toko_wilayah.dart';
 import '../../../data/api/toko/model/model_toko_kota.dart';
 import '../../../data/api/toko/model/model_toko_wilayah.dart';
-import '../../../utils/get_device_info.dart';
-import '../../../utils/location_service.dart';
+// import '../../../data/api/logs/data/post_user_log.dart';
+// import '../../../utils/get_device_info.dart';
+// import '../../../utils/location_service.dart';
 
 class TokoController extends GetxController {
   Rx<ModelTokoWilayah?> wilayahProvinsi = Rx<ModelTokoWilayah?>(null);
@@ -63,16 +63,16 @@ class TokoController extends GetxController {
           (wilayah.tipe ?? "").isCaseInsensitiveContainsAny(text ?? "");
     })?.id;
 
-    LocationService.getCurrentLocation().then((location) {
-      getDeviceInfo().then((deviceName) {
-        postUserLog({
-          "device": deviceName,
-          "lokasi": location,
-          "tipeKonten": "toko",
-          "idKonten": id,
-        });
-      });
-    });
+    // LocationService.getCurrentLocation().then((location) {
+    //   getDeviceInfo().then((deviceName) {
+    //     postUserLog({
+    //       "device": deviceName,
+    //       "lokasi": location,
+    //       "tipeKonten": "toko",
+    //       "idKonten": id,
+    //     });
+    //   });
+    // });
 
     getTokoKota(id.toString()).then((res) {
       if (res.data != null) {

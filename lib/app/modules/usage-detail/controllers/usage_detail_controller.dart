@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../../../data/api/logs/data/post_user_log.dart';
 import '../../../data/api/usage/data/get_usage.dart';
 import '../../../data/api/usage/model/model_usage.dart';
-import '../../../utils/get_device_info.dart';
-import '../../../utils/location_service.dart';
+// import '../../../data/api/logs/data/post_user_log.dart';
+// import '../../../utils/get_device_info.dart';
+// import '../../../utils/location_service.dart';
 
 class UsageDetailController extends GetxController {
   final Rx<ModelUsage?> usage = Rx<ModelUsage?>(null);
@@ -31,16 +31,16 @@ class UsageDetailController extends GetxController {
 
     if (response.data != null) {
       usage.value = response.data;
-      LocationService.getCurrentLocation().then((location) {
-        getDeviceInfo().then((deviceName) {
-          postUserLog({
-            "device": deviceName,
-            "lokasi": location,
-            "tipeKonten": "penggunaan",
-            "idKonten": usage.value?.id,
-          });
-        });
-      });
+      // LocationService.getCurrentLocation().then((location) {
+      //   getDeviceInfo().then((deviceName) {
+      //     postUserLog({
+      //       "device": deviceName,
+      //       "lokasi": location,
+      //       "tipeKonten": "penggunaan",
+      //       "idKonten": usage.value?.id,
+      //     });
+      //   });
+      // });
     } else {
       Get.back();
     }
