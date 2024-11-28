@@ -43,7 +43,7 @@ class ArticleView extends GetView<ArticleController> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
               child: TextBold(
-                text: "Cara Pakai",
+                text: "Artikel",
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),

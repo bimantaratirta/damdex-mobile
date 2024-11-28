@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "702459171800",
+    "project_id": "damdex-apps",
+    "storage_bucket": "damdex-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702459171800:android:4cfb5eed3187826eda18ad",
+        "android_client_info": {
+          "package_name": "com.damdexapp.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYm3UqgTYr0KUx3D8Efvih0Dygv5c8RNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

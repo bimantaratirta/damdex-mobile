@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 import '../../../data/api/article/data/get_article.dart';
 import '../../../data/api/article/model/model_article.dart';
-import '../../../data/api/logs/data/post_user_log.dart';
-import '../../../utils/get_device_info.dart';
-import '../../../utils/location_service.dart';
+// import '../../../data/api/logs/data/post_user_log.dart';
+// import '../../../utils/get_device_info.dart';
+// import '../../../utils/location_service.dart';
 
 class ArticleDetailController extends GetxController {
   final Rx<ModelArticle?> article = Rx<ModelArticle?>(null);
@@ -21,14 +21,16 @@ class ArticleDetailController extends GetxController {
     final response = await getArticle(Get.arguments ?? "null");
     if (response.data != null) {
       article.value = response.data;
-      location = await LocationService.getCurrentLocation();
-      deviceName = await getDeviceInfo();
-      await postUserLog({
-        "device": deviceName,
-        "lokasi": location,
-        "tipeKonten": "artikel",
-        "idKonten": article.value?.id,
-      });
+      // LocationService.getCurrentLocation().then((location) {
+      //   getDeviceInfo().then((deviceName) {
+      //     postUserLog({
+      //       "device": deviceName,
+      //       "lokasi": location,
+      //       "tipeKonten": "artikel",
+      //       "idKonten": article.value?.id,
+      //     });
+      //   });
+      // });
     } else {
       Get.back();
     }

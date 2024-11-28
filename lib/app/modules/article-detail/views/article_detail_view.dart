@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -51,8 +52,8 @@ class ArticleDetailView extends GetView<ArticleDetailController> {
               SizedBox(
                 width: double.infinity,
                 height: 125,
-                child: Image.network(
-                  APIPath.assetId(article?.idAsset ?? ""),
+                child: CachedNetworkImage(
+                  imageUrl: APIPath.assetId(article?.idAsset ?? ""),
                   fit: BoxFit.contain,
                 ),
               ),

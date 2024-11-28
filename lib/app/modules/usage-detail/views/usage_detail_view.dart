@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,8 +63,8 @@ class _UsageDetailViewState extends State<UsageDetailView> with SingleTickerProv
             SizedBox(
               width: double.infinity,
               height: 125,
-              child: Image.network(
-                APIPath.assetId(usage?.idAsset ?? ""),
+              child: CachedNetworkImage(
+                imageUrl: APIPath.assetId(usage?.idAsset ?? ""),
                 fit: BoxFit.contain,
               ),
             ),

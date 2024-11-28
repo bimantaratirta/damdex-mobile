@@ -1,5 +1,6 @@
 class APIPath {
-  static const base = "https://api.makar.my.id";
+  static const base = "https://api.damdexapps.com";
+  // static const base = "https://api.makar.my.id";
 
   static const admin = "$base/admin";
   static const adminLogin = "$admin/login";
@@ -31,4 +32,9 @@ class APIPath {
 
   static const settings = "$base/pengaturan";
   static String settingId(String id) => "$base/pengaturan/$id";
+
+  static const about = "$base/about";
+
+  static const video = "$base/video";
+  static String videoId(String id) => "$video/$id";
 }

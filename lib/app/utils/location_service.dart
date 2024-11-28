@@ -2,7 +2,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationService {
-  static Future<Map<String, dynamic>> getCurrentLocation() async {
+  static Future<Map<String, dynamic>> getCurrentLocation({bool isOnInit = false}) async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -24,6 +24,9 @@ class LocationService {
     }
 
     final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    if (isOnInit) {
+      return {};
+    }
     return getAddressFromLatLng(latitude: position.latitude, longitude: position.longitude);
   }
 

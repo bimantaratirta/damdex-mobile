@@ -11,12 +11,14 @@ class AppDropdownTextField extends StatelessWidget {
     this.selectedValue,
     required this.values,
     required this.onChanged,
+    this.hintText,
   });
 
   final String label;
   final String? selectedValue;
   final List<String?> values;
   final Function(String?) onChanged;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,8 @@ class AppDropdownTextField extends StatelessWidget {
         Gaps.vertical.xs,
         InputDecorator(
           decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: const TextStyle(color: AppColors.black),
             contentPadding: const EdgeInsets.symmetric(horizontal: Sizes.sm, vertical: Sizes.r),
             border: OutlineInputBorder(
               borderRadius: const BorderRadius.all(Radius.circular(Sizes.s)),

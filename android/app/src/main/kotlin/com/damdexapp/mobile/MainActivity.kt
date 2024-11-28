@@ -1,4 +1,4 @@
-package com.damdexindonesia.mobile
+package com.damdexapp.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
