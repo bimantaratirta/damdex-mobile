@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/sizes.dart';
+import '../../../data/api/about/model/model_about.dart';
 import '../../../data/api/api_path.dart';
 import '../../../data/api/article/model/model_articles.dart';
 import '../../../data/api/product/model/model_get_products.dart';
@@ -20,7 +21,9 @@ import '../../home/controllers/home_controller.dart';
 import '../../usages/controllers/usages_controller.dart';
 import '../../usages/widgets/usage_card.dart';
 import '../controllers/product_controller.dart';
+import '../widgets/about_card.dart';
 import '../widgets/product_card.dart';
+import '../widgets/videos_card.dart';
 
 class ProductView extends GetView<ProductController> {
   const ProductView({super.key});
@@ -42,6 +45,8 @@ class ProductView extends GetView<ProductController> {
         final usages = (Get.find<UsagesController>().usages.value?.payload ?? []).take(2).toList();
         final articles = (Get.find<ArticleController>().articles.value?.payload ?? []).take(4).toList();
         final homeController = Get.find<HomeController>();
+        final about = controller.about.value;
+        final videos = controller.videos.value;
         if (isLoading) {
           return Center(
             child: Column(
@@ -119,6 +124,16 @@ class ProductView extends GetView<ProductController> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
               child: TextBold(
+                text: "Kesimpulan Damdex",
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            AboutCard(about: about ?? ModelAbout()),
+            Gaps.vertical.s,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
+              child: TextBold(
                 text: "Produk Kami",
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
@@ -150,6 +165,10 @@ class ProductView extends GetView<ProductController> {
             ),
             for (Usage usage in usages) ...[
               UsageCard(usage: usage),
+            ],
+            Gaps.vertical.s,
+            if ((videos?.totalAllData ?? 0) > 0) ...[
+              VideosCard(videos: videos!),
             ],
             Gaps.vertical.s,
             const Padding(

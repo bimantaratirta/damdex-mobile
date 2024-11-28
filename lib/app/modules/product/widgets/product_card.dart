@@ -25,61 +25,82 @@ class ProductCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: Sizes.s, horizontal: Sizes.m),
         padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.sr,
-          vertical: Sizes.s,
+          horizontal: Sizes.xs,
+          vertical: Sizes.xs,
         ),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(Sizes.xs)),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.black.withOpacity(.025),
-              offset: const Offset(0, 2),
-              spreadRadius: 2,
-              blurRadius: 5,
-            ),
-          ],
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(Sizes.s)),
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFd32228),
+              Color(0xFFef9631),
+              Color(0xFFa2b745),
+              Color(0xFF2f458a),
+              Color(0xFF821b6f),
+            ],
+          ),
         ),
-        child: Column(
-          children: [
-            Container(
-              height: 100,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.sr,
+            vertical: Sizes.s,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: const BorderRadius.all(Radius.circular(Sizes.xs)),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.black.withOpacity(.025),
+                offset: const Offset(0, 2),
+                spreadRadius: 2,
+                blurRadius: 5,
               ),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: CachedNetworkImage(
-                imageUrl: APIPath.assetId(product.idAsset ?? ""),
-                fit: BoxFit.contain,
-              ),
-            ),
-            Gaps.vertical.s,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextBold(
-                  text: product.judul ?? "-",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
+            ],
+          ),
+          child: Column(
+            children: [
+              Container(
+                height: 100,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      "Detail",
-                      style: TextStyle(color: AppColors.primary, fontSize: 14),
-                    ),
-                    Gaps.horizontal.xs,
-                    const Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 12,
-                    ),
-                    Gaps.horizontal.xs,
-                  ],
-                )
-              ],
-            )
-          ],
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: CachedNetworkImage(
+                  imageUrl: APIPath.assetId(product.idAsset ?? ""),
+                  fit: BoxFit.contain,
+                ),
+              ),
+              Gaps.vertical.s,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextBold(
+                    text: product.judul ?? "-",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        "Detail",
+                        style: TextStyle(color: AppColors.primary, fontSize: 14),
+                      ),
+                      Gaps.horizontal.xs,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 12,
+                      ),
+                      Gaps.horizontal.xs,
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
