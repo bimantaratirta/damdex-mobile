@@ -121,6 +121,8 @@ class ProductView extends GetView<ProductController> {
                 ),
               ),
             Gaps.vertical.s,
+            const ProductDivider(),
+            Gaps.vertical.s,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
               child: TextBold(
@@ -130,6 +132,8 @@ class ProductView extends GetView<ProductController> {
               ),
             ),
             AboutCard(about: about ?? ModelAbout()),
+            Gaps.vertical.s,
+            const ProductDivider(),
             Gaps.vertical.s,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
@@ -142,6 +146,8 @@ class ProductView extends GetView<ProductController> {
             for (Produk product in products?.payload ?? []) ...[
               ProductCard(product: product),
             ],
+            Gaps.vertical.s,
+            const ProductDivider(),
             Gaps.vertical.s,
             InkWell(
               onTap: () => homeController.persistentTabController.jumpToTab(1),
@@ -167,9 +173,13 @@ class ProductView extends GetView<ProductController> {
               UsageCard(usage: usage),
             ],
             Gaps.vertical.s,
+            const ProductDivider(),
+            Gaps.vertical.r,
             if ((videos?.totalAllData ?? 0) > 0) ...[
               VideosCard(videos: videos!),
             ],
+            Gaps.vertical.s,
+            const ProductDivider(),
             Gaps.vertical.s,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
@@ -186,6 +196,32 @@ class ProductView extends GetView<ProductController> {
           ],
         );
       }),
+    );
+  }
+}
+
+class ProductDivider extends StatelessWidget {
+  const ProductDivider({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(2),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Color(0xFFd32228),
+            Color(0xFFef9631),
+            Color(0xFFa2b745),
+            Color(0xFF2f458a),
+            Color(0xFF821b6f),
+          ],
+        ),
+      ),
     );
   }
 }

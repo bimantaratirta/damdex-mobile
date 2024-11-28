@@ -14,6 +14,7 @@ class VideosController extends GetxController {
   void onInit() {
     getVideos().then((responseVideos) {
       if (responseVideos.data != null) {
+        (responseVideos.data?.listVideo ?? []).sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
         videos.value = responseVideos.data;
       } else {
         isError.value = true;
