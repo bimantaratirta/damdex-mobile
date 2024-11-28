@@ -32,4 +32,9 @@ class APIPath {
 
   static const settings = "$base/pengaturan";
   static String settingId(String id) => "$base/pengaturan/$id";
+
+  static const about = "$base/about";
+
+  static const video = "$base/video";
+  static String videoId(String id) => "$video/$id";
 }

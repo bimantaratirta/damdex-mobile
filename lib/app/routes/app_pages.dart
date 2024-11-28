@@ -1,7 +1,7 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:get/get.dart';
 
+import '../modules/about/bindings/about_binding.dart';
+import '../modules/about/views/about_view.dart';
 import '../modules/article-detail/bindings/article_detail_binding.dart';
 import '../modules/article-detail/views/article_detail_view.dart';
 import '../modules/article/bindings/article_binding.dart';
@@ -20,6 +20,10 @@ import '../modules/usage-detail/bindings/usage_detail_binding.dart';
 import '../modules/usage-detail/views/usage_detail_view.dart';
 import '../modules/usages/bindings/usages_binding.dart';
 import '../modules/usages/views/usages_view.dart';
+import '../modules/videos/bindings/videos_binding.dart';
+import '../modules/videos/views/videos_view.dart';
+
+// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
@@ -73,6 +77,16 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT,
+      page: () => const AboutView(),
+      binding: AboutBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIDEOS,
+      page: () => const VideosView(),
+      binding: VideosBinding(),
     ),
   ];
 }
