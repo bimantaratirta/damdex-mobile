@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/sizes.dart';
-import '../../../data/api/article/model/model_articles.dart';
+import '../../../data/api/article/model/model_article.dart';
 import '../../../data/api/usage/model/model_usage.dart';
 import '../../article/widgets/article_card.dart';
 
@@ -16,7 +16,7 @@ class UsageRelated extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: Sizes.m),
       children: (usage?.listArtikel ?? [])
           .map((article) => ArticleCard(
-                article: Artikel.fromJson(article.toJson()),
+                article: ModelArticle.fromJson(article.toJson()),
               ))
           .toList(),
     );

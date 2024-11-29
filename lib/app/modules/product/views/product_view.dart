@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../constants/sizes.dart';
 import '../../../data/api/about/model/model_about.dart';
 import '../../../data/api/api_path.dart';
-import '../../../data/api/article/model/model_articles.dart';
+import '../../../data/api/article/model/model_article.dart';
 import '../../../data/api/product/model/model_get_products.dart';
 import '../../../data/api/settings/model/model_settings.dart';
 import '../../../data/api/usage/model/model_get_usages.dart';
@@ -65,6 +65,7 @@ class ProductView extends GetView<ProductController> {
             ),
           );
         }
+        articles.sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
         return ListView(
           children: [
             if (banners.isNotEmpty)
@@ -189,7 +190,7 @@ class ProductView extends GetView<ProductController> {
                 fontSize: 16,
               ),
             ),
-            for (Artikel article in articles) ...[
+            for (ModelArticle article in articles) ...[
               ArticleCard(article: article),
             ],
             Gaps.vertical.m,

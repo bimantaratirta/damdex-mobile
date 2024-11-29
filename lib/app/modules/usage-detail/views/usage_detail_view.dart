@@ -58,6 +58,7 @@ class _UsageDetailViewState extends State<UsageDetailView> with SingleTickerProv
             ),
           );
         }
+        usage?.listArtikel?.sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
         return Column(
           children: [
             SizedBox(

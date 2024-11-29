@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/sizes.dart';
-import '../../../data/api/article/model/model_articles.dart';
+import '../../../data/api/article/model/model_article.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/text_bold.dart';
@@ -38,6 +38,7 @@ class ArticleView extends GetView<ArticleController> {
             ),
           );
         }
+        articles.sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
         return ListView(
           children: [
             const Padding(
@@ -48,7 +49,7 @@ class ArticleView extends GetView<ArticleController> {
                 fontSize: 16,
               ),
             ),
-            for (Artikel article in articles) ...[
+            for (ModelArticle article in articles) ...[
               ArticleCard(article: article),
             ],
           ],

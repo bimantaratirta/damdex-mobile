@@ -19,12 +19,14 @@ class VideosCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listVideo = videos.listVideo ?? [];
+    listVideo.sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
     return InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: () => Get.toNamed(Routes.VIDEOS),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: Sizes.m),
+        margin: const EdgeInsets.symmetric(horizontal: Sizes.s),
         width: 300,
         height: 180,
         child: Row(
@@ -38,7 +40,7 @@ class VideosCard extends StatelessWidget {
                   alignment: Alignment.center,
                   fit: StackFit.loose,
                   children: [
-                    for (Video vid in videos.listVideo ?? []) ...[
+                    for (Video vid in listVideo) ...[
                       Builder(builder: (context) {
                         left += 5;
                         top += 10;
@@ -46,7 +48,7 @@ class VideosCard extends StatelessWidget {
                           top: 0 + top,
                           left: 15 + left,
                           child: Container(
-                            width: 175,
+                            width: 165,
                             height: 100,
                             decoration: BoxDecoration(
                               border: Border.all(color: AppColors.white),
@@ -73,16 +75,14 @@ class VideosCard extends StatelessWidget {
               }),
             ),
             SizedBox(
-              width: 80,
+              width: 100,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const Flexible(
                     child: TextBold(
                       text: "VIDEO DAMDEX",
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      softWrap: true,
                     ),
                   ),
                   Container(

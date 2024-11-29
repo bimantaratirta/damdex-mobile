@@ -22,7 +22,7 @@ class VideosView extends GetView<VideosController> {
           return const Center(child: SizedBox(width: 50, height: 50, child: CircularProgressIndicator()));
         }
 
-        listVideo.sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 9));
+        listVideo.sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
 
         return ListView(
           children: [

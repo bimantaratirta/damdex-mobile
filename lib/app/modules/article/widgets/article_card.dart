@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 
 import '../../../constants/sizes.dart';
 import '../../../data/api/api_path.dart';
-import '../../../data/api/article/model/model_articles.dart';
+import '../../../data/api/article/model/model_article.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
@@ -18,7 +18,7 @@ class ArticleCard extends StatelessWidget {
     required this.article,
   });
 
-  final Artikel article;
+  final ModelArticle article;
 
   @override
   Widget build(BuildContext context) {
