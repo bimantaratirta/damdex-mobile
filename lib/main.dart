@@ -1,6 +1,6 @@
-// import 'dart:io';
+import 'dart:io';
 
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,25 +11,25 @@ import 'app/routes/app_bindings.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_theme.dart';
 
-// Future<void> initializeApp() async {
-//   if (Platform.isAndroid) {
-//     await Firebase.initializeApp(
-//       name: "Damdex",
-//       options: const FirebaseOptions(
-//         apiKey: "AIzaSyBYm3UqgTYr0KUx3D8Efvih0Dygv5c8RNM",
-//         appId: "1:702459171800:android:4cfb5eed3187826eda18ad",
-//         messagingSenderId: "702459171800",
-//         projectId: "damdex-apps",
-//         storageBucket: "damdex-apps.appspot.com",
-//       ),
-//     );
-//   } else {}
-// }
+Future<void> initializeApp() async {
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      name: "Damdex",
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyBYm3UqgTYr0KUx3D8Efvih0Dygv5c8RNM",
+        appId: "1:702459171800:android:4cfb5eed3187826eda18ad",
+        messagingSenderId: "702459171800",
+        projectId: "damdex-apps",
+        storageBucket: "damdex-apps.appspot.com",
+      ),
+    );
+  } else {}
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('id_ID', null);
-  // await initializeApp();
+  await initializeApp();
   runApp(const MyApp());
 }
 
