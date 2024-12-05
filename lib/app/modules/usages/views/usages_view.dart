@@ -6,6 +6,7 @@ import '../../../constants/sizes.dart';
 import '../../../data/api/usage/model/model_get_usages.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
+import '../../../shareds/widgets/damdex_divider.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../controllers/usages_controller.dart';
 import '../widgets/usage_card.dart';
@@ -48,8 +49,12 @@ class UsagesView extends GetView<UsagesController> {
                 fontSize: 16,
               ),
             ),
+            const DamdexDivider(),
             for (Usage usage in usages) ...[
               UsageCard(usage: usage),
+              if (usages.indexOf(usage) != usages.length - 1) ...[
+                const DamdexDivider(),
+              ]
             ],
           ],
         );

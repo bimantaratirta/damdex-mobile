@@ -7,6 +7,7 @@ import '../../../data/api/toko/model/model_toko_kota.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_dropdown_textfield.dart';
 import '../../../shareds/widgets/app_gaps.dart';
+import '../../../shareds/widgets/damdex_divider.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../controllers/toko_controller.dart';
 import '../widgets/toko_card.dart';
@@ -102,6 +103,7 @@ class TokoView extends GetView<TokoController> {
                         TokoCard(toko: distributor),
                         Gaps.vertical.sr,
                       ],
+                      const DamdexDivider(),
                       Gaps.vertical.l,
                     ],
                     if (retailers?.isNotEmpty ?? false) ...[

@@ -6,6 +6,7 @@ import '../../../constants/sizes.dart';
 import '../../../data/api/article/model/model_article.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
+import '../../../shareds/widgets/damdex_divider.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../controllers/article_controller.dart';
 import '../widgets/article_card.dart';
@@ -49,6 +50,7 @@ class ArticleView extends GetView<ArticleController> {
                 fontSize: 16,
               ),
             ),
+            const DamdexDivider(),
             for (ModelArticle article in articles) ...[
               ArticleCard(article: article),
             ],

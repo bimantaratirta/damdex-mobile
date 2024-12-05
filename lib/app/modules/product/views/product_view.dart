@@ -13,6 +13,7 @@ import '../../../data/api/settings/model/model_settings.dart';
 import '../../../data/api/usage/model/model_get_usages.dart';
 import '../../../shareds/widgets/app_button.dart';
 import '../../../shareds/widgets/app_gaps.dart';
+import '../../../shareds/widgets/damdex_divider.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../../../theme/app_colors.dart';
 import '../../article/controllers/article_controller.dart';
@@ -122,7 +123,7 @@ class ProductView extends GetView<ProductController> {
                 ),
               ),
             Gaps.vertical.s,
-            const ProductDivider(),
+            const DamdexDivider(),
             Gaps.vertical.s,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
@@ -134,7 +135,7 @@ class ProductView extends GetView<ProductController> {
             ),
             AboutCard(about: about ?? ModelAbout()),
             Gaps.vertical.s,
-            const ProductDivider(),
+            const DamdexDivider(),
             Gaps.vertical.s,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
@@ -148,7 +149,7 @@ class ProductView extends GetView<ProductController> {
               ProductCard(product: product),
             ],
             Gaps.vertical.s,
-            const ProductDivider(),
+            const DamdexDivider(),
             Gaps.vertical.s,
             InkWell(
               onTap: () => homeController.persistentTabController.jumpToTab(1),
@@ -174,13 +175,13 @@ class ProductView extends GetView<ProductController> {
               UsageCard(usage: usage),
             ],
             Gaps.vertical.s,
-            const ProductDivider(),
+            const DamdexDivider(),
             Gaps.vertical.r,
             if ((videos?.totalAllData ?? 0) > 0) ...[
               VideosCard(videos: videos!),
             ],
             Gaps.vertical.s,
-            const ProductDivider(),
+            const DamdexDivider(),
             Gaps.vertical.s,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: Sizes.m, vertical: Sizes.r),
@@ -197,32 +198,6 @@ class ProductView extends GetView<ProductController> {
           ],
         );
       }),
-    );
-  }
-}
-
-class ProductDivider extends StatelessWidget {
-  const ProductDivider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(2),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Color(0xFFd32228),
-            Color(0xFFef9631),
-            Color(0xFFa2b745),
-            Color(0xFF2f458a),
-            Color(0xFF821b6f),
-          ],
-        ),
-      ),
     );
   }
 }

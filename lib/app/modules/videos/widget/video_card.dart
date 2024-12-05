@@ -9,10 +9,10 @@ import '../../../data/api/api_path.dart';
 import '../../../data/api/videos/model/model_video.dart';
 import '../../../shareds/widgets/app_gaps.dart';
 import '../../../shareds/widgets/app_icon.dart';
+import '../../../shareds/widgets/damdex_divider.dart';
 import '../../../shareds/widgets/text_bold.dart';
 import '../../../theme/app_colors.dart';
 import '../../../utils/convert_url_to_id.dart';
-import '../../product/views/product_view.dart';
 import '../controllers/videos_controller.dart';
 
 class VideoCard extends GetView<VideosController> {
@@ -93,7 +93,7 @@ class VideoCard extends GetView<VideosController> {
                     ),
                   ),
                   Gaps.vertical.r,
-                  const ProductDivider(),
+                  const DamdexDivider(),
                   Gaps.vertical.r,
                   const Padding(
                     padding: EdgeInsets.only(top: Sizes.m, right: Sizes.m, left: Sizes.m),
