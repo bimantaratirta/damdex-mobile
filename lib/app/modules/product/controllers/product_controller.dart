@@ -15,7 +15,7 @@ class ProductController extends GetxController {
   Rx<ModelGetProducts?> products = Rx<ModelGetProducts?>(null);
   Rx<ModelAbout?> about = Rx<ModelAbout?>(null);
   Rx<Videos?> videos = Rx<Videos?>(null);
-  CarouselController carouselController = CarouselController();
+  CarouselSliderController carouselController = CarouselSliderController();
   RxList<Payload> banners = <Payload>[].obs;
   Rx<Payload?> currentBanner = Rx<Payload?>(null);
 
