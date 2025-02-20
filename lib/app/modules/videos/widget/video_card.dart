@@ -119,7 +119,7 @@ class VideoCard extends GetView<VideosController> {
             vertical: Sizes.s,
           ),
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.lightGrey.withOpacity(.5)),
+            border: Border.all(color: AppColors.lightGrey.withValues(alpha: .5)),
             borderRadius: const BorderRadius.all(
               Radius.circular(Sizes.s),
             ),

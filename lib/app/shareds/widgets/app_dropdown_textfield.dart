@@ -37,11 +37,11 @@ class AppDropdownTextField extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: Sizes.sm, vertical: Sizes.r),
             border: OutlineInputBorder(
               borderRadius: const BorderRadius.all(Radius.circular(Sizes.s)),
-              borderSide: BorderSide(color: AppColors.primary.withOpacity(.2)),
+              borderSide: BorderSide(color: AppColors.primary.withValues(alpha: .2)),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: const BorderRadius.all(Radius.circular(Sizes.s)),
-              borderSide: BorderSide(color: AppColors.primary.withOpacity(.2)),
+              borderSide: BorderSide(color: AppColors.primary.withValues(alpha: .2)),
             ),
             suffixIconConstraints: const BoxConstraints(minWidth: 50),
           ),

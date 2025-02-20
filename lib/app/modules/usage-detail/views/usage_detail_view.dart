@@ -73,9 +73,9 @@ class _UsageDetailViewState extends State<UsageDetailView> with SingleTickerProv
               controller: tabController,
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: AppColors.accent,
-              unselectedLabelColor: AppColors.accent.withOpacity(.7),
+              unselectedLabelColor: AppColors.accent.withValues(alpha: .7),
               indicatorColor: AppColors.accent,
-              overlayColor: WidgetStatePropertyAll<Color>(AppColors.accent.withOpacity(.1)),
+              overlayColor: WidgetStatePropertyAll<Color>(AppColors.accent.withValues(alpha: .1)),
               indicatorWeight: 4,
               labelPadding: const EdgeInsets.all(Sizes.r),
               tabs: const [

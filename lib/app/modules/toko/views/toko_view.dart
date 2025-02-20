@@ -23,8 +23,7 @@ class TokoView extends GetView<TokoController> {
       final isError = controller.isError.value;
       final isLoading = controller.isLoading.value;
       final isFieldLoading = controller.isFieldLoading.value;
-      final distributors = tokoKota?.listToko?.where((toko) => toko.tipe == "distributor").toList();
-      final retailers = tokoKota?.listToko?.where((toko) => toko.tipe == "retailer").toList();
+      final listtoko = tokoKota?.listToko ?? [];
       final selectedProvinsi = controller.selectedProvinsi.value;
       final selectedKota = controller.selectedKota.value;
       if (isLoading) {
@@ -89,34 +88,22 @@ class TokoView extends GetView<TokoController> {
                       child: CircularProgressIndicator(),
                     ),
                   ] else ...[
-                    if ((distributors ?? []).isEmpty && (retailers ?? []).isEmpty) ...[
+                    if (listtoko.isEmpty) ...[
                       const Text("Data Kosong"),
-                    ],
-                    if (distributors?.isNotEmpty ?? false) ...[
+                    ] else ...[
                       const TextBold(
-                        text: "Distributor",
+                        text: "Lokasi Toko",
                         fontWeight: FontWeight.w500,
                         fontSize: Sizes.m,
                       ),
                       Gaps.vertical.r,
-                      for (Toko distributor in distributors ?? []) ...[
-                        TokoCard(toko: distributor),
+                      for (Toko toko in listtoko) ...[
+                        TokoCard(toko: toko),
                         Gaps.vertical.sr,
                       ],
+                      Gaps.vertical.l,
                       const DamdexDivider(),
                       Gaps.vertical.l,
-                    ],
-                    if (retailers?.isNotEmpty ?? false) ...[
-                      const TextBold(
-                        text: "Retailer",
-                        fontWeight: FontWeight.w500,
-                        fontSize: Sizes.m,
-                      ),
-                      Gaps.vertical.r,
-                      for (Toko retailer in retailers ?? []) ...[
-                        TokoCard(toko: retailer),
-                        Gaps.vertical.sr,
-                      ],
                     ],
                   ],
                   Gaps.vertical.xh,

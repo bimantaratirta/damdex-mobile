@@ -59,7 +59,7 @@ class VideosCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(Sizes.sr),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.black.withOpacity(.3),
+                                  color: AppColors.black.withValues(alpha: .3),
                                   spreadRadius: 2,
                                   offset: const Offset(1, 2),
                                   blurRadius: 2,

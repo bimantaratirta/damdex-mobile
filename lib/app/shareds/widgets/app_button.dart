@@ -68,8 +68,8 @@ class AppButton extends StatelessWidget {
         fixedSize: fixedSize ?? const Size(double.infinity, 40),
         foregroundColor: foregroundColor ?? AppColors.white,
         backgroundColor: backgroundColor ?? AppColors.accent,
-        disabledForegroundColor: AppColors.white.withOpacity(.5),
-        disabledBackgroundColor: (backgroundColor ?? AppColors.accent).withOpacity(.5),
+        disabledForegroundColor: AppColors.white.withValues(alpha: .5),
+        disabledBackgroundColor: (backgroundColor ?? AppColors.accent).withValues(alpha: .5),
         padding: padding ?? const EdgeInsets.symmetric(vertical: Sizes.sr, horizontal: Sizes.r),
         shape: RoundedRectangleBorder(borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(Sizes.sr))),
       ),
@@ -79,7 +79,7 @@ class AppButton extends StatelessWidget {
               height: 18,
               child: CircularProgressIndicator(
                 strokeWidth: 2.0,
-                color: (foregroundColor ?? AppColors.white).withOpacity(.5),
+                color: (foregroundColor ?? AppColors.white).withValues(alpha: .5),
               ),
             )
           : child,
@@ -94,10 +94,10 @@ class AppButton extends StatelessWidget {
         fixedSize: fixedSize ?? const Size(double.infinity, 40),
         foregroundColor: foregroundColor ?? AppColors.accent,
         backgroundColor: backgroundColor ?? Colors.transparent,
-        disabledForegroundColor: foregroundColor ?? AppColors.accent.withOpacity(.5),
+        disabledForegroundColor: foregroundColor ?? AppColors.accent.withValues(alpha: .5),
         padding: padding ?? const EdgeInsets.symmetric(vertical: Sizes.sr, horizontal: Sizes.r),
         side: BorderSide(
-          color: (borderColor ?? AppColors.accent).withOpacity(state == ButtonState.enable ? 1 : .5),
+          color: (borderColor ?? AppColors.accent).withValues(alpha: state == ButtonState.enable ? 1 : .5),
           width: borderWidth ?? 1.0,
         ),
         shape: RoundedRectangleBorder(borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(Sizes.sr))),
@@ -108,7 +108,7 @@ class AppButton extends StatelessWidget {
               height: 18,
               child: CircularProgressIndicator(
                 strokeWidth: 2.0,
-                color: (foregroundColor ?? AppColors.accent).withOpacity(.5),
+                color: (foregroundColor ?? AppColors.accent).withValues(alpha: .5),
               ),
             )
           : child,
@@ -123,7 +123,7 @@ class AppButton extends StatelessWidget {
         fixedSize: fixedSize ?? const Size(double.infinity, 40),
         foregroundColor: foregroundColor ?? AppColors.accent,
         backgroundColor: backgroundColor ?? Colors.transparent,
-        disabledForegroundColor: foregroundColor ?? AppColors.accent.withOpacity(.5),
+        disabledForegroundColor: foregroundColor ?? AppColors.accent.withValues(alpha: .5),
         padding: padding ?? const EdgeInsets.symmetric(vertical: Sizes.sr, horizontal: Sizes.r),
         shape: RoundedRectangleBorder(borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(Sizes.sr))),
       ),
@@ -133,7 +133,7 @@ class AppButton extends StatelessWidget {
               height: 18,
               child: CircularProgressIndicator(
                 strokeWidth: 2.0,
-                color: (foregroundColor ?? AppColors.accent).withOpacity(.5),
+                color: (foregroundColor ?? AppColors.accent).withValues(alpha: .5),
               ),
             )
           : child,

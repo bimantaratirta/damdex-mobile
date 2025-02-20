@@ -32,7 +32,7 @@ class AboutCard extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(Sizes.xs)),
           boxShadow: [
             BoxShadow(
-              color: AppColors.black.withOpacity(.025),
+              color: AppColors.black.withValues(alpha: .025),
               offset: const Offset(0, 2),
               spreadRadius: 2,
               blurRadius: 5,
